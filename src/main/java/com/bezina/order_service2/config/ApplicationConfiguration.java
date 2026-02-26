@@ -46,10 +46,16 @@ public class ApplicationConfiguration {
     public BillingClient billingClient (@Value("${billing.service.url}")String baseUrl) {
         return new BillingServiceClient(buildRestClient(baseUrl));
     }
+    @Bean
+    public CouponClient couponClient (@Value("${coupon.service.url}")String baseUrl) {
+        return new CouponServiceClient(buildRestClient(baseUrl));
+    }
     ///////////////SERVICES
     @Bean
-    public RequestValidatorService requestValidatorService (ProductClient productClient, CustomerClient customerClient) {
-        return new RequestValidatorServiceImpl(productClient, customerClient);
+    public RequestValidatorService requestValidatorService (ProductClient productClient,
+                                                            CustomerClient customerClient,
+                                                            CouponClient couponClient) {
+        return new RequestValidatorServiceImpl(productClient, customerClient, couponClient);
     }
     @Bean
     public PriceCalculatorService priceCalculatorService () {

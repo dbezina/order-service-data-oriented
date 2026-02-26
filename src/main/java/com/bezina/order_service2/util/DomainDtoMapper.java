@@ -23,7 +23,8 @@ public class DomainDtoMapper {
         return CreateOrderCommand.create(
                 orderRequest.customerId(),
                 orderRequest.productId(),
-                orderRequest.quantity()
+                orderRequest.quantity(),
+                orderRequest.couponCode()
         );
     }
     public static OrderResponse toOrderResponse(Order order, Invoice invoice, List<Shipment> shipments) {
